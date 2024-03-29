@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= message
+  h2= "Code: " + error.status
+  hr
+  details
+    summary= "Info......"
+    pre #{error.stack}
