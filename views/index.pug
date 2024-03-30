@@ -2,4 +2,15 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p 欢迎来到 #[em 本地图书馆], 一个非常基本的 Express 网站，作为 Mozilla 开发者网络上的教程示例开发。.
+
+  h1 动态内容
+
+  p 该库具有以下记录计数：
+
+  ul
+    li #[strong 书本数量:] !{book_count}
+    li #[strong 书籍:] !{book_instance_count}
+    li #[strong 可提供的书籍:] !{book_instance_available_count}
+    li #[strong 作者数量:] !{author_count}
+    li #[strong 类别数目:] !{genre_count}

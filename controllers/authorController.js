@@ -1,9 +1,19 @@
 const Author = require("../models/author");
 const asyncHandler = require("express-async-handler");
 
-// Display list of all Authors.
+// 显示所有作者
 exports.author_list = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Author list");
+    Author.find()
+    .sort([["family_name", "ascending"]])
+    .exec().then(list_authors => {
+		//Successful, so render
+		res.render("author_list", {
+			title: "作者列表",
+			author_list: list_authors,
+		});
+	}).catch(err => {
+		return next(err);
+	});
 });
 
 // Display detail page for a specific Author.

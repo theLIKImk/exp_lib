@@ -1,10 +1,17 @@
 const BookInstance = require("../models/bookinstance");
 const asyncHandler = require("express-async-handler");
 
-// Display list of all BookInstances.
+// 显示书本实例列表
 exports.bookinstance_list = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: BookInstance list");
+  BookInstance.find()
+    .populate("book")
+    .exec().then(list_bookinstances => {
+		res.render("bookinstance_list", { title: "书本状态", bookinstance_list: list_bookinstances });
+	}).catch (err => {
+		return next(err);
+	});
 });
+
 
 // Display detail page for a specific BookInstance.
 exports.bookinstance_detail = asyncHandler(async (req, res, next) => {
